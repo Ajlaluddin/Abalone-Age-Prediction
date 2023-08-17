@@ -10,13 +10,13 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh 'sudo docker build -t abalone-img .'
+                sh 'sudo docker build -t abalone-img-ajlal .'
             }
         }
         
         stage('Deploy') {
             steps {
-                sh 'sudo docker run -d -p 8082:8082 abalone-img'
+                sh 'sudo docker run -d -p 8082:8082 abalone-img-ajlal'
             }
         }
     }
