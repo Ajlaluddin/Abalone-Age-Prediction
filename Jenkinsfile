@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
+        stages('checkout') {
             steps {
                 checkout scm
             }
@@ -10,14 +10,15 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh 'sudo pip3 install -r requirements.txt'
+                sh 'sudo docker build -t abalone-img .'
             }
         }
         
         stage('Deploy') {
             steps {
-                sh 'sudo screen -m -d python3 app.py build'
+                sh 'sudo docker run -d -p 8081:8081 abalone-img'
             }
         }
-    }   
+    }
 }
+
